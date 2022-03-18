@@ -1,30 +1,6 @@
-<!-- <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Template</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class=" float-md-left navbar-nav">
-                <a class="nav-link" href="/">Home</a>
-            </div>
-            <div class="navbar-nav ml-auto float-md-right">
-                <% if(!currentUser){%>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Sign Up</a>
-                <%}else{%>
-                    <a class="nav-link"><%=currentUser.username%></a>
-                    <a class="nav-link" href="/logout">Log Out</a>
-                <%}%>
-            </div>
-        </div>
-    </div>
-</nav> -->
-
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Payment</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,10 +10,10 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">For Candidates</a>
+                <a class="nav-link" href="#">Link1</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">For Professionals</a>
+                <a class="nav-link" href="#">Link2</a>
             </li>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -50,7 +26,7 @@
                 </li>
             <%}else{%>
                 <li class="nav-item">
-                    <a class="nav-link"><%=currentUser.username%></a>
+                    <a class="nav-link"><%=currentUser.name%></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Log Out</a>

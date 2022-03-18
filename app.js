@@ -12,7 +12,7 @@ const User = require('./models/user')
 
 const userRoutes = require('./routes/users')
 
-mongoose.connect('mongodb://localhost:27017/templateDB', {
+mongoose.connect('mongodb://localhost:27017/payments', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
