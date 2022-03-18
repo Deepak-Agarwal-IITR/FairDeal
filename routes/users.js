@@ -5,9 +5,13 @@ const passport = require('passport')
 
 const users = require('../controllers/users')
 
+const multer = require('multer');
+const { userImageStorage } = require('../cloudinary');
+const upload = multer({ storage:userImageStorage });
+
 router.route('/register')
     .get(users.renderRegister)
-    .post(catchAsync(users.register))
+    .post(upload.single('image'),catchAsync(users.register))
 
 router.route('/login')
     .get(users.renderLogin)

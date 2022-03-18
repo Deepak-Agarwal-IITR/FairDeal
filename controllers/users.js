@@ -9,12 +9,18 @@ module.exports.register = async(req,res)=>{
     try{
         const {name,username,password} = req.body;
         const user = new User({name,username});
+        
         const registeredUser = await User.register(user, password)
+        if(req.file)
+            registeredUser.image = {url: req.file.path,filename:req.file.filename}
+        else
+            registeredUser.image = {url:"/images/user.jpg"}
+        await registeredUser.save();
         //console.log(registeredUser)
         req.login(registeredUser,err=>{
             if (err) return next(err);
-            req.flash('success', 'Welcome to Template')
-            res.redirect('/main')
+            req.flash('success', 'Welcome to Payments')
+            res.redirect('/groups')
         })
         
     }catch(e){
@@ -29,7 +35,7 @@ module.exports.renderLogin = (req,res)=>{
 }
 module.exports.login = (req, res) => {
     req.flash('success', 'Welcome Back');
-    const redirectUrl = req.session.returnTo || '/main'
+    const redirectUrl = req.session.returnTo || '/groups'
     delete req.session.returnTo;
     res.redirect(redirectUrl)
 }

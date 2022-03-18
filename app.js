@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -11,6 +14,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user')
 
 const userRoutes = require('./routes/users')
+const groupRoutes = require('./routes/groups')
 
 mongoose.connect('mongodb://localhost:27017/payments', {
     useNewUrlParser: true,
@@ -57,11 +61,11 @@ app.use((req,res,next)=>{
     next();   
 })
 
-app.get('/main',(req,res)=>{
-    res.render('main/index');
-})
+
 
 app.use('/',userRoutes)
+app.use('/groups',groupRoutes)
+
 app.get('/',(req,res)=>{
     res.render('home');
 })

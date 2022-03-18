@@ -1,0 +1,17 @@
+<%-include('../partials/header',{title: "Edit Group"})%>
+<h1>Edit Group</h1>
+<form class="needs-validation" novalidate action="/groups/<%=group._id %>?_method=PUT" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="name">Name: </label>
+        <input type="text" name="group[name]" id="name" value="<%=group.name%>" required>
+    </div>
+    <div class="mb-3">
+        <label for="image">Change Image:</label>
+        <input class="form-control" type="file" name="image" id="image">    
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-success" type="submit">Save</button>
+    </div>
+</form>
+
+<%-include('../partials/footer')%>

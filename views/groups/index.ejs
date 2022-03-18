@@ -1,0 +1,12 @@
+<%-include('../partials/header',{title: "All Groups"})%>
+    <h1>All groups</h1>
+    <a class="btn btn-success mb-3" href="/groups/new">New Group</a>
+    <div class="row">
+    <% for(let group of groups){ %> 
+        <div class="card p-3 col-sm-6 col-md-4">
+            <img class="img-fluid rounded-start mb-1" src="<%=group.image.url%>" alt="">
+            <p class="text-center"><a href="/groups/<%=group._id %>"><%= group.name %></a> </p>
+        </div>
+    <% } %> 
+    </div>
+<%-include('../partials/footer')%>

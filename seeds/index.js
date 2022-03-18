@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user')
 
-mongoose.connect('mongodb://localhost:27017/doubtapp', {
+mongoose.connect('mongodb://localhost:27017/payments', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

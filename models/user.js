@@ -6,6 +6,10 @@ const UserSchema = new Schema({
     name:{
         type:String,
         required:true
+    },
+    image:{
+        url: String,
+        filename: String
     }
 })
 
