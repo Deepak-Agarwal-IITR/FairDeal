@@ -1,0 +1,24 @@
+<%-include('../partials/header',{title: "Group Transactions"})%>
+
+<a class="nav-link" href="/groups/<%=group._id%>"> Back to Group</a>
+
+<div class="">
+    <% const user = group.users.find(user=>user.uid.toString()===currentUser._id.toString() ) %>
+    <% const color = parseInt(user.netPay)>0 ? `green` : `red`%> 
+    <div id="net" style="color:<%= color%>; font-weight:bold;">
+        Net <%= parseInt(user.netPay)>0 ? ` Paid ${user.netPay}` : ` Borrowed ${-1*parseInt(user.netPay)} `  %>
+    </div> 
+</div>
+<div class="">
+    <% for(transaction of group.transactions){ %> 
+        <div class="card p-1">
+            <% if(transaction.kind==="paid"){%>
+                <%=transaction.sender.name %> -> <%=transaction.receiver.name %>   Rs. <%=transaction.amount %>   
+            <% }else{ %>
+                <%=transaction.receiver.name %> <- <%=transaction.sender.name %>   Rs. <%=transaction.amount %> 
+            <% } %>
+        </div>
+    <% } %> 
+</div>
+
+<%-include('../partials/footer') %> 

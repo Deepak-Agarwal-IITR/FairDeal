@@ -11,18 +11,38 @@
             </form>
         </div>
     </div>
-<%}else if(currentUser && !((group.owner.equals(currentUser._id) || group.users.filter(user => user.uid.toString() === currentUser._id.toString()).length > 0))){%>
+<%}else if(currentUser && !((group.owner.equals(currentUser._id) || group.users.filter(user => user.uid._id.toString() === currentUser._id.toString()).length > 0))){%>
     <div class="row mb-3">
         <form action="/groups/<%=group._id%>/join" method="POST">
             <button class="btn btn-primary">Join Group</button> 
         </form>
     </div>
 <%}%>
-<% if(currentUser && (group.owner.equals(currentUser._id) || group.users.filter(user => user.uid.toString() === currentUser._id.toString()).length > 0)){%>
+<% if(currentUser && (group.owner.equals(currentUser._id) || group.users.filter(user => user.uid._id.toString() === currentUser._id.toString()).length > 0)){%>
     <div class="row mb-3">
         <div class="col-auto">
-            <a class="btn btn-light" href="/groups/<%= group._id%>/transactions">Make Transaction</a>
+            <a class="btn btn-success" href="/groups/<%= group._id%>/transactions/new">Make Transaction</a>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-auto">
+            <a class="btn btn-secondary" href="/groups/<%= group._id%>/transactions">Show Transaction</a>
         </div>
     </div>
 <%}%>
+
+<div class="">
+    Users in this group:
+</div>
+<div class="row">
+<% for(let user of group.users){ %> 
+    <div class="card p-3 col-sm-4 col-md-2">
+        <img class="img-fluid rounded-start mb-1" src="<%=user.uid.image.url%>" alt="">
+        <p class="text-center"><%=user.uid.name %></p>
+        <% if(currentUser && (group.owner.equals(currentUser._id) || group.users.filter(user => user.uid._id.toString() === currentUser._id.toString()).length > 0)){%>
+        <span class="text-center" style="color: <%=user.netPay>0?`green`:`red`%>; font-weight:bold;"> <%=user.netPay %> </span>
+        <% } %> 
+    </div>
+<% } %> 
+</div>
 <%-include('../partials/footer')%>

@@ -23,11 +23,11 @@ const seedDB = async () => {
     await Transaction.deleteMany({})
     console.log("Deleted transactions")
 
-    const user1 = new User({ username:"a",name:"A" });
+    const user1 = new User({ username:"a",name:"A",image:{url:"/images/user.jpg"} });
     const registeredUser1 = await User.register(user1, "a");
-    const user2 = new User({ username:"b",name:"B" });
+    const user2 = new User({ username:"b",name:"B",image:{url:"/images/user.jpg"} });
     const registeredUser2 = await User.register(user2, "b");
-    const user3 = new User({ username:"c",name:"C" });
+    const user3 = new User({ username:"c",name:"C",image:{url:"/images/user.jpg"} });
     const registeredUser3 = await User.register(user3, "c");
 }
 

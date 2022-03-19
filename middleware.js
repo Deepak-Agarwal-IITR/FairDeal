@@ -20,16 +20,6 @@ module.exports.isOwner = catchAsync(async(req,res,next) => {
     next();
 })
 
-// module.exports.isCommentUser = catchAsync(async(req,res,next) => {
-//     const { id,lectureId,commentId } = req.params;
-//     const comment = await Comment.findById(commentId);
-//     if(!comment.user.equals(req.user._id)){
-//         req.flash('error', "You don't have permissions")
-//         return res.redirect(`/groups/${id}/lectures/${lectureId}`);
-//     }
-//     next();
-// })
-
 module.exports.isJoinedInGroup = catchAsync(async (req, res, next) => {
     const { id } = req.params;
     const group = await Group.findById(id);

@@ -18,7 +18,7 @@ const TransactionSchema = new Schema({
     },
     kind:{
         type: String,
-        enum:['paid,borrowed'],
+        enum:['paid','borrowed'],
         required:true
     }
 })

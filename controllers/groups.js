@@ -25,7 +25,7 @@ module.exports.renderNewGroupForm = (req,res)=>{
 
 module.exports.showGroup = async(req,res)=>{
     const {id} = req.params;
-    const group = await Group.findById(id);
+    const group = await Group.findById(id).populate('users.uid');
 
     res.render('groups/show',{group})
 }
