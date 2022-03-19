@@ -3,7 +3,7 @@ const User = require('../models/user')
 const Group = require('../models/group')
 const Transaction = require('../models/transaction')
 
-mongoose.connect('mongodb://localhost:27017/payments', {
+mongoose.connect('mongodb://localhost:27017/fairdeal', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

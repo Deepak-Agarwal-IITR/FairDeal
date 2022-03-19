@@ -20,6 +20,10 @@ const TransactionSchema = new Schema({
         type: String,
         enum:['paid','borrowed'],
         required:true
+    },
+    createdOn:{
+        type: Date,
+        default: Date.now
     }
 })
 
