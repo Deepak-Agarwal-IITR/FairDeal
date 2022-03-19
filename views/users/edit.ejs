@@ -1,0 +1,25 @@
+<%-include('../partials/header',{title: "Edit Profile"})%>
+<h1>Edit Profile</h1>
+<form class="needs-validation" novalidate action="/profile?_method=PUT" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="name">Name: </label>
+        <input type="text" name="user[name]" id="name" value="<%=currentUser.name%>" required>
+    </div>
+    <div class="mb-3">
+        <label for="image">Change Image:</label>
+        <input class="form-control" type="file" name="image" id="image">    
+    </div>
+    <div class="mb-3">
+        <div class="">
+            Current Image
+        </div>
+        <div class="">
+            <img src="<%=currentUser.image.url %> " alt="">
+        </div>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-success" type="submit">Save</button>
+    </div>
+</form>
+
+<%-include('../partials/footer')%>

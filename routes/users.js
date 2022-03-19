@@ -19,6 +19,13 @@ router.route('/login')
 
 router.get('/logout',users.logout)
 
-router.get('/profile',isLoggedIn,catchAsync(users.profilePage))
+router.route('/profile')
+    .get(isLoggedIn,catchAsync(users.profilePage))
+    .put(isLoggedIn,upload.single('image'),catchAsync(users.editProfile))
+
+router.get('/profile/edit',isLoggedIn,users.renderEditProfileForm)
+
+router.get('/dashboard',isLoggedIn,catchAsync(users.dashboard))
+
 
 module.exports = router;

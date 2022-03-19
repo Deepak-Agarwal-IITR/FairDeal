@@ -50,3 +50,26 @@ module.exports.profilePage = async (req,res)=>{
 
     res.render("users/profile",{groups});
 }
+
+module.exports.dashboard = async (req,res)=>{
+    const groups = await Group.find({'users.uid':req.user._id});
+
+    res.render("users/dashboard",{groups});
+}
+
+module.exports.renderEditProfileForm = (req,res)=>{
+    res.render("users/edit")
+}
+
+module.exports.editProfile = async(req,res)=>{
+    const {name} = req.body.user;    
+    const user = await User.findByIdAndUpdate(req.user._id,{name});
+    if(req.file){
+        if(user.image.filename)
+            await cloudinary.uploader.destroy(user.image.filename);
+        user.image = {url: req.file.path,filename:req.file.filename}
+    }
+    await user.save();
+    req.flash('success',"Updated Profile")
+    res.redirect("/profile")
+}

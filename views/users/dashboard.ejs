@@ -1,21 +1,5 @@
-<%-include("../partials/header",{title: "Profile"}) %> 
-<div class="row mb-3">
-    <div class="col-auto">
-        <img src="<%=currentUser.image.url %>" alt="" style="max-height: 200px ;">
-    </div>
-    <div class="col-auto">
-        <div class="row">
-            Name: <%=currentUser.name %>
-        </div>
-        <div class="row mb-3">
-            Username: <%= currentUser.username %> 
-        </div>
-        <div class="row">
-            <a class="btn btn-success btn-sm" href="/profile/edit">Edit Profile</a>
-        </div>
-    </div>
+<%-include("../partials/header",{title: "Dashboard"}) %> 
 
-</div>
 <h1>Your Groups</h1>
 <% var netPay = 0; %> 
 <div class="mb-3">

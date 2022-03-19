@@ -10,11 +10,13 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link1</a>
+                <a class="nav-link" href="/groups">All Groups</a>
             </li>
+            <%if(currentUser){ %> 
             <li class="nav-item">
-                <a class="nav-link" href="#">Link2</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
+            <% } %> 
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
             <% if(!currentUser){%>
@@ -26,7 +28,7 @@
                 </li>
             <%}else{%>
                 <li class="nav-item">
-                    <a class="nav-link"><%=currentUser.name%></a>
+                    <a href="/profile" class="nav-link"><%=currentUser.name%></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Log Out</a>
