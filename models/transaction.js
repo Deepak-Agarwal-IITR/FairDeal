@@ -24,6 +24,9 @@ const TransactionSchema = new Schema({
     createdOn:{
         type: Date,
         default: Date.now
+    },
+    description:{
+        type:String
     }
 })
 

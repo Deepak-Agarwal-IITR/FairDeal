@@ -13,10 +13,17 @@
     <% for(transaction of group.transactions){ %> 
         <div class="card p-1">
             <% if(transaction.kind==="paid"){%>
-                <%=transaction.sender.name %> -> <%=transaction.receiver.name %>   Rs. <%=transaction.amount %> on <%=transaction.createdOn.toLocaleString() %>  
+                <div class="">
+                    <%=transaction.sender.name %> -> <%=transaction.receiver.name %>   Rs. <%=transaction.amount %> on <%=transaction.createdOn.toLocaleString() %> 
+                </div>
             <% }else{ %>
-                <%=transaction.receiver.name %> <- <%=transaction.sender.name %>   Rs. <%=transaction.amount %> on <%=transaction.createdOn.toLocaleString() %>  
+                <div class="">
+                    <%=transaction.receiver.name %> <- <%=transaction.sender.name %>   Rs. <%=transaction.amount %> on <%=transaction.createdOn.toLocaleString() %>  
+                </div>
             <% } %>
+            <div class="">
+                <%= transaction.description %> 
+            </div>
         </div>
     <% } %> 
 </div>
