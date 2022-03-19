@@ -14,8 +14,19 @@
     <% } %> 
 </div>
 
-<h3 style="color: <%=netPay>=0?`green`:`red`%>; font-weight:bold;"> 
+<h3 class="mb-3" style="color: <%=netPay>=0?`green`:`red`%>; font-weight:bold;"> 
     <%=netPay>=0 ? `Net Paid ${netPay}`: `Net Borrowed ${-netPay}` %> 
 </h3>
+
+<div class="">Your Transactions: </div>
+<% for(let transaction of transactions){ %> 
+    <div class="card p-1">
+        <% if(transaction.kind==="paid"){%>
+            <%=transaction.sender.name %> -> <%=transaction.receiver.name %>   Rs. <%=transaction.amount %> on <%=transaction.createdOn.toLocaleString() %> 
+        <% }else{ %>
+            <%=transaction.receiver.name %> <- <%=transaction.sender.name %>   Rs. <%=transaction.amount %> on <%=transaction.createdOn.toLocaleString() %>  
+        <% } %>
+    </div>
+<% } %> 
 
 <%-include("../partials/footer") %> 

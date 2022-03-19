@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Group = require('../models/group')
+const Transaction = require('../models/transaction')
 module.exports.renderRegister = (req, res) => {
     res.render('users/register')
 }
@@ -46,14 +47,14 @@ module.exports.logout = (req,res)=>{
 
 module.exports.profilePage = async (req,res)=>{
     const groups = await Group.find({'users.uid':req.user._id});
-
-    res.render("users/profile",{groups});
+    const transactions = await Transaction.find({$or: [{"sender": req.user._id},{"receiver": req.user._id}]}).populate("sender").populate("receiver")
+    res.render("users/profile",{groups,transactions});
 }
 
 module.exports.dashboard = async (req,res)=>{
     const groups = await Group.find({'users.uid':req.user._id});
-
-    res.render("users/dashboard",{groups});
+    const transactions = await Transaction.find({$or: [{"sender": req.user._id},{"receiver": req.user._id}]}).populate("sender").populate("receiver")
+    res.render("users/dashboard",{groups,transactions});
 }
 
 module.exports.renderEditProfileForm = (req,res)=>{
