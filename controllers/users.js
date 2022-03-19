@@ -5,7 +5,6 @@ module.exports.renderRegister = (req, res) => {
 }
 
 module.exports.register = async(req,res)=>{
-    //res.send(req.body)
     try{
         const {name,username,password} = req.body;
         const user = new User({name,username});
@@ -16,10 +15,10 @@ module.exports.register = async(req,res)=>{
         else
             registeredUser.image = {url:"/images/user.jpg"}
         await registeredUser.save();
-        //console.log(registeredUser)
+        
         req.login(registeredUser,err=>{
             if (err) return next(err);
-            req.flash('success', 'Welcome to Payments')
+            req.flash('success', 'Welcome to FairDeal')
             res.redirect('/groups')
         })
         

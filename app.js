@@ -17,7 +17,7 @@ const userRoutes = require('./routes/users')
 const groupRoutes = require('./routes/groups')
 const transactionRoutes = require('./routes/transactions')
 
-mongoose.connect('mongodb://localhost:27017/payments', {
+mongoose.connect('mongodb://localhost:27017/fairdeal', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

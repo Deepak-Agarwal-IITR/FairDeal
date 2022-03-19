@@ -10,14 +10,14 @@ cloudinary.config({
 const groupImageStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params:{
-        folder: 'Payment/Group',
+        folder: 'FairDeal/Group',
         allowed_formats:["jpeg","png","jpg","webp"]
     }
 })
 const userImageStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params:{
-        folder: 'Payment/User',
+        folder: 'FairDeal/User',
         allowed_formats:["jpeg","png","jpg","webp"]
     }
 })
