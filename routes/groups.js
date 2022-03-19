@@ -3,7 +3,7 @@ const router = express.Router();
 const catchAsync = require('../utils/catchAsync');
 
 const groups = require('../controllers/groups')
-const {isLoggedIn,isOwner} = require('../middleware')
+const {isLoggedIn,isOwner,isAlreadyJoined,isJoinedInGroup} = require('../middleware')
 
 const multer = require('multer');
 const { groupImageStorage } = require('../cloudinary');
@@ -24,5 +24,6 @@ router.route('/:id')
 router.route('/:id/edit')
     .get(isLoggedIn,isOwner,catchAsync(groups.renderEditGroupForm))
 
+router.post('/:id/join', isLoggedIn, isAlreadyJoined, catchAsync(groups.joinGroup))
 
 module.exports = router;

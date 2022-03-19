@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../models/user')
+const Group = require('../models/group')
+const Transaction = require('../models/transaction')
 
 mongoose.connect('mongodb://localhost:27017/payments', {
     useNewUrlParser: true,
@@ -16,6 +18,10 @@ const seedDB = async () => {
     
     await User.deleteMany({});
     console.log("Deleted users")
+    await Group.deleteMany({});
+    console.log("Deleted groups")
+    await Transaction.deleteMany({})
+    console.log("Deleted transactions")
 
     const user1 = new User({ username:"a",name:"A" });
     const registeredUser1 = await User.register(user1, "a");

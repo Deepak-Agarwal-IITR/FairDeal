@@ -15,6 +15,7 @@ const User = require('./models/user')
 
 const userRoutes = require('./routes/users')
 const groupRoutes = require('./routes/groups')
+const transactionRoutes = require('./routes/transactions')
 
 mongoose.connect('mongodb://localhost:27017/payments', {
     useNewUrlParser: true,
@@ -65,6 +66,7 @@ app.use((req,res,next)=>{
 
 app.use('/',userRoutes)
 app.use('/groups',groupRoutes)
+app.use('/groups/:id/transactions',transactionRoutes)
 
 app.get('/',(req,res)=>{
     res.render('home');

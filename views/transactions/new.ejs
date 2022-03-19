@@ -1,0 +1,56 @@
+<%-include('../partials/header',{title: "New Transaction"})%>
+<style>
+    .vertical-align {
+    display: flex;
+    align-items: center;
+}
+</style>
+<h1>Add New Transaction</h1>
+<form class="needs-validation" novalidate action="/groups/<%=id%>/transactions" method="post">
+    <div class="row mb-3">
+        <div class="col-auto">
+            <select class="form-select" aria-label="Default select example" name="transaction[kind]">
+                <option selected value="paid">Pay to</option>
+                <option value="borrowed">Borrow from</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <select class="form-select" name="user" required>
+                <option selected>Choose username (user)...</option>
+                <%for(let user of users){ %> 
+                    <option value="<%=user.uid._id%>"><%=user.uid.username%> (<%= user.uid.name%>) </option>
+                <% } %> 
+            </select>
+        </div>
+        <div class="col-auto">
+            <div class="row">
+                <div class="col-auto vertical-align">
+                    <label class="text-center" for="amount">Rs. </label>
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" id="amount" type="number" min="1" name="transaction[amount]" oninput="checkAmount()" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-12" id="amountWarning" style="display: none; color: red;">
+            Amount can not be blank or negative
+        </div>
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-success" type="submit">Add</button>
+    </div>
+</form>
+
+<script>
+    function checkAmount(){
+        const amount = document.getElementById("amount");
+        if(amount.value<1){
+            const amountWarning = document.getElementById("amountWarning");
+            amountWarning.style.display = "initial"
+        }else{
+            const amountWarning = document.getElementById("amountWarning");
+            amountWarning.style.display = "none"
+        }
+    }
+</script>
+<%-include('../partials/footer')%>

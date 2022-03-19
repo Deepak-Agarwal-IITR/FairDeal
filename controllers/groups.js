@@ -13,7 +13,7 @@ module.exports.createNewGroup = async (req,res)=>{
         group.image = {url: req.file.path,filename:req.file.filename}
     else
         group.image = {url:"/images/group.jpg"}
-    group.users.push({user:req.user});
+    group.users.push({uid:req.user._id});
     await group.save();
     req.flash('success',"Created a new group")
     res.redirect("/groups")
@@ -55,4 +55,14 @@ module.exports.deleteGroup = async(req,res)=>{
     await Group.findByIdAndDelete(id)
     req.flash('success',"Deleted group")
     res.redirect('/groups')
+}
+
+module.exports.joinGroup = async(req,res)=>{
+    const {id} = req.params;
+    const group = await Group.findById(id);
+
+    group.users.push({uid:req.user._id});
+    await group.save();
+    req.flash('success',`You have joined the group ${group.name}`);
+    res.redirect(`/groups/${group._id}`)
 }

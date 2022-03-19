@@ -6,6 +6,13 @@
         <div class="card p-3 col-sm-6 col-md-4">
             <img class="img-fluid rounded-start mb-1" src="<%=group.image.url%>" alt="">
             <p class="text-center"><a href="/groups/<%=group._id %>"><%= group.name %></a> </p>
+            <%if(currentUser && !(group.owner.equals(currentUser._id) || group.users.filter(user => user.uid.toString() === currentUser._id.toString()).length > 0)){%>
+                <div class="row mb-3 text-center">
+                    <form action="/groups/<%=group._id%>/join" method="POST">
+                        <button class="btn btn-primary btn-sm">Join Group</button> 
+                    </form>
+                </div>
+            <%}%>
         </div>
     <% } %> 
     </div>

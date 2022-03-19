@@ -12,7 +12,7 @@ const GroupSchema = new Schema({
         ref:"User"
     },
     users:[{
-        user: {
+        uid: {
             type: Schema.Types.ObjectId,
             ref:"User"
         },
@@ -23,7 +23,8 @@ const GroupSchema = new Schema({
         }
     }],
     transactions:[{
-
+        type: Schema.Types.ObjectId,
+        ref: "Transaction"
     }],
     image:{
         url: String,
