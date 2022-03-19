@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync');
 const passport = require('passport')
 
 const users = require('../controllers/users')
-
+const {isLoggedIn} = require('../middleware')
 const multer = require('multer');
 const { userImageStorage } = require('../cloudinary');
 const upload = multer({ storage:userImageStorage });
@@ -18,5 +18,7 @@ router.route('/login')
     .post(passport.authenticate('local',{failureFlash:true,failureRedirect:'/login'}),users.login)
 
 router.get('/logout',users.logout)
+
+router.get('/profile',isLoggedIn,catchAsync(users.profilePage))
 
 module.exports = router;

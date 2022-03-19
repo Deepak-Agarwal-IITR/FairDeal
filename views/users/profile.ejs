@@ -1,0 +1,33 @@
+<%-include("../partials/header",{title: "Profile"}) %> 
+<div class="row mb-3">
+    <div class="col-auto">
+        <img src="<%=currentUser.image.url %>" alt="" style="max-height: 200px ;">
+    </div>
+    <div class="col-auto">
+        <div class="row">
+            Name: <%=currentUser.name %>
+        </div>
+        <div class="row">
+            Username: <%= currentUser.username %> 
+        </div>
+    </div>
+</div>
+<h1>Your Groups</h1>
+<% var netPay = 0; %> 
+<div class="mb-3">
+    <% for(let group of groups){ %> 
+        <div class="card p-3 col-sm-4 col-md-2">
+            <img class="img-fluid rounded-start mb-1" src="<%=group.image.url%>" alt="">
+            <p class="text-center"><a class="nav-link" href="/groups/<%=group._id %>"><%=group.name %></a></p>
+            <%const amount = group.users.find(user => user.uid.toString()===currentUser._id.toString()).netPay  %> 
+            <% netPay +=amount %> 
+            <span class="text-center" style="color: <%=amount>=0?`green`:`red`%>; font-weight:bold;"> <%=amount %> </span>
+        </div>
+    <% } %> 
+</div>
+
+<h3 style="color: <%=netPay>=0?`green`:`red`%>; font-weight:bold;"> 
+    <%=netPay>=0 ? `Net Paid ${netPay}`: `Net Borrowed ${-netPay}` %> 
+</h3>
+
+<%-include("../partials/footer") %> 

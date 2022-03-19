@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const Group = require('../models/group')
 module.exports.renderRegister = (req, res) => {
     res.render('users/register')
 }
@@ -43,4 +43,10 @@ module.exports.logout = (req,res)=>{
     req.logout();
     req.flash('success',"Goodbye!")
     res.redirect('/');
+}
+
+module.exports.profilePage = async (req,res)=>{
+    const groups = await Group.find({'users.uid':req.user._id});
+
+    res.render("users/profile",{groups});
 }
