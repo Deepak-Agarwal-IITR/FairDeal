@@ -40,7 +40,7 @@
         <img class="img-fluid rounded-start mb-1" src="<%=user.uid.image.url%>" alt="">
         <p class="text-center"><%=user.uid.name %></p>
         <% if(currentUser && (group.owner.equals(currentUser._id) || group.users.filter(user => user.uid._id.toString() === currentUser._id.toString()).length > 0)){%>
-        <span class="text-center" style="color: <%=user.netPay>0?`green`:`red`%>; font-weight:bold;"> <%=user.netPay %> </span>
+        <span class="text-center" style="color: <%=user.netPay>=0?`green`:`red`%>; font-weight:bold;"> <%=user.netPay %> </span>
         <% } %> 
     </div>
 <% } %> 

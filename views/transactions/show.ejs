@@ -4,9 +4,9 @@
 
 <div class="">
     <% const user = group.users.find(user=>user.uid.toString()===currentUser._id.toString() ) %>
-    <% const color = parseInt(user.netPay)>0 ? `green` : `red`%> 
+    <% const color = parseInt(user.netPay)>=0 ? `green` : `red`%> 
     <div id="net" style="color:<%= color%>; font-weight:bold;">
-        Net <%= parseInt(user.netPay)>0 ? ` Paid ${user.netPay}` : ` Borrowed ${-1*parseInt(user.netPay)} `  %>
+        Net <%= parseInt(user.netPay)>=0 ? ` Paid ${user.netPay}` : ` Borrowed ${-1*parseInt(user.netPay)} `  %>
     </div> 
 </div>
 <div class="">
